@@ -29,6 +29,7 @@ namespace Стройматериалы
 
         private void Load()
         {
+            // Scaffold - DbContext "server=192.168.1.15\SQLEXPRESS;database=DE;user=student;password=student" Microsoft.EntityFrameworkCore.SqlServer - force
             DEContext dEContext = new DEContext();
 
             /*string file = @"C:\Users\Student\Desktop\09_1.1-2022_4\Вариант 4\Вариант 4\Сессия 1\Товар_import_Стройматериалы.csv";
