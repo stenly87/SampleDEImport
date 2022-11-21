@@ -17,10 +17,11 @@
                         Visibility="{Binding CapchaVisible}">
                 <Label Content="Введите капчу"/>
                 <Canvas x:Name="capchaCanvas" 
-                        Height="200" Width="200" />
+                        Height="100" Width="200" />
+                <TextBox Text="{Binding CapchaText}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Name="btnAuth" Style="{StaticResource AttentionButton}" Content="Войти" Command="{Binding Enter}" />
+                <Button Name="btnAuth" IsEnabled="{Binding CanEnter}" Style="{StaticResource AttentionButton}" Content="Войти" Command="{Binding Enter}" />
                 <Button Name="btnAuthGuest" Content="Войти как гость" Command="{Binding EnterGuest}" />
             </StackPanel>
         </StackPanel>

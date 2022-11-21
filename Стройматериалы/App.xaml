@@ -35,6 +35,13 @@
             <Setter Property="Padding" Value="3"/>
         </Style>
 
+        <Style TargetType="PasswordBox">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="Background" Value="{StaticResource AddBackgroundBrush}"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Padding" Value="3"/>
+        </Style>
+
         <Style TargetType="ListView">
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="Margin" Value="3"/>

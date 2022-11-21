@@ -233,5 +233,13 @@ namespace Стройматериалы.DB
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        static DEContext instance;
+        public static DEContext GetInstance()
+        {
+            if (instance == null)
+                instance = new DEContext();
+            return instance;
+        }
     }
 }
