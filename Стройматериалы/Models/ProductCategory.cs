@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Стройматериалы
+namespace Стройматериалы.Models
 {
-    public partial class ProductManufacturer
+    public partial class ProductCategory
     {
-        public ProductManufacturer()
+        public ProductCategory()
         {
             Products = new HashSet<Product>();
         }
 
-        public int ManufacturerId { get; set; }
+        public int CategoryId { get; set; }
         public string? Title { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }

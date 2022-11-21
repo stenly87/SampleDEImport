@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Стройматериалы
+namespace Стройматериалы.Models
 {
     public partial class PickupPoint
     {

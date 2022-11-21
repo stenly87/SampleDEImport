@@ -1,0 +1,28 @@
+﻿<Page x:Class="Стройматериалы.View.AuthPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Стройматериалы.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AuthPage">
+    <StackPanel>
+        <StackPanel>
+            <Label Content="Логин"/>
+            <TextBox Name="textLogin" Text="{Binding Login}"/>
+            <Label Content="Пароль"/>
+            <PasswordBox Name="textPassword"/>
+            <StackPanel HorizontalAlignment="Center"
+                        Visibility="{Binding CapchaVisible}">
+                <Label Content="Введите капчу"/>
+                <Canvas x:Name="capchaCanvas" 
+                        Height="200" Width="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Name="btnAuth" Style="{StaticResource AttentionButton}" Content="Войти" Command="{Binding Enter}" />
+                <Button Name="btnAuthGuest" Content="Войти как гость" Command="{Binding EnterGuest}" />
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Page>

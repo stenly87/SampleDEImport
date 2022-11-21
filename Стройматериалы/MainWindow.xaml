@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Стройматериалы"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="ООО Стройматериалы" 
+        WindowStartupLocation="CenterScreen"
+        MinHeight="600" MinWidth="800" Icon="/logo.png">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="0.3*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="/logo.png" Width="100"/>
+            <Label Grid.Column="1" VerticalAlignment="Center" FontSize="15" HorizontalAlignment="Center" Content="Магазин по продаже строительных материалов в Сыктывкаре" />
+            <StackPanel Grid.Column="2" Visibility="{Binding LoggedIn}">
+                <Label Content="Авторизованный пользователь:" />
+                <Label Content="{Binding User}"/>
+            </StackPanel>
+        </Grid>
+        <Frame x:Name="mainFrame"
+               NavigationUIVisibility="Hidden"
+               Content="{Binding CurrentPage}" 
+               Grid.Row="1"/>
     </Grid>
 </Window>

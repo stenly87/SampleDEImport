@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Стройматериалы.Models;
 
-namespace Стройматериалы
+namespace Стройматериалы.DB
 {
     public partial class DEContext : DbContext
     {
