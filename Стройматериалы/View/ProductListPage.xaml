@@ -4,9 +4,39 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Стройматериалы.View"
+      xmlns:model="clr-namespace:Стройматериалы.Models"
+      xmlns:tools="clr-namespace:Стройматериалы.Tools"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProductListPage">
+    <Page.Resources>
+        <tools:CountToBackground x:Key="countToBackground"/>
+        <DataTemplate DataType="{x:Type model:Product}">
+            <Grid Background="{Binding ProductQuantityInStock, Converter={StaticResource countToBackground}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding Image}" MaxWidth="200"/>
+                <StackPanel Grid.Column="1">
+                    <Label Content="{Binding ProductArticleNumber}"/>
+                    <Label Content="{Binding ProductName}"/>                    
+                    <Label Content="{Binding ProductDescription}"/>
+                    <TextBlock FontFamily="Comic Sans MS"  Padding="3" Margin="3" Text="{Binding Path=ProductManufacturer.Title, StringFormat=Производитель: {0}}"/>
+                    <TextBlock FontFamily="Comic Sans MS" Padding="3" Margin="3" Text="{Binding Path=Supplier.Title, StringFormat=Поставщик: {0}}"/>
+                    <TextBlock FontFamily="Comic Sans MS" Padding="3" Margin="3" Text="{Binding Path=ProductCategory.Title, StringFormat=Категория: {0}}"/>
+                    <TextBlock FontFamily="Comic Sans MS" Padding="3" Margin="3" Text="{Binding Path=ProductCost, StringFormat=Цена: {0}}"/>
+                    <TextBlock FontFamily="Comic Sans MS" Padding="3" Margin="3" Text="{Binding Path=ProductDiscountAmount, StringFormat=Действующая скидка: {0}}"/>
+                    <TextBlock FontFamily="Comic Sans MS" Padding="3" Margin="3" Text="{Binding Path=ProductDiscountMax, StringFormat=Максимальная скидка: {0}}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal">                    
+                    <TextBlock FontFamily="Comic Sans MS" Padding="3" Margin="3" Text="{Binding Path=ProductQuantityInStock, StringFormat=Кол-во на складе: {0}}"/>
+                    <TextBlock FontFamily="Comic Sans MS" Padding="3" Margin="3" Text="{Binding ProductUnit.Title}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,11 +44,11 @@
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Content="{Binding RowsCount}"/>
-            <StackPanel Visibility="{Binding IsAdminVisibility}" Orientation="Horizontal">
+            <StackPanel Grid.Column="1" Visibility="{Binding IsAdminVisibility}" Orientation="Horizontal">
                 <Button Content="Добавить"/>
                 <Button Content="Редактировать"/>
                 <Button Content="Удалить"/>
@@ -31,9 +61,16 @@
             </Grid.ColumnDefinitions>
             <StackPanel>
                 <Label Content="Поиск товара:"/>
-                <TextBox Text="{Binding Search}"/>
+                <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" MinWidth="150"/>
+                <Label Content="Сортировка по стоимости"/>
+                <RadioButton Content="По возрастанию" IsChecked="{Binding SortPriceASC}"/>
+                <RadioButton Content="По убыванию" IsChecked="{Binding SortPriceDESC}"/>
+                <Label Content="Фильтрация по производителю"/>
+                <ComboBox ItemsSource="{Binding Manufacturers}"
+                          DisplayMemberPath="Title"
+                          SelectedItem="{Binding SelectedManufacturer}"/>
             </StackPanel>
-            <ListBox ItemsSource="{Binding Products}"
+            <ListBox HorizontalContentAlignment="Stretch" Grid.Column="1" ItemsSource="{Binding Products}"
                      SelectedItem="{Binding SelectedProduct}"/>
         </Grid> 
     </Grid>

@@ -25,7 +25,7 @@
                 <Label Content="Авторизованный пользователь:" />
                 <Label Content="{Binding UserName}"/>
                 <Label Content="{Binding Role}"/>
-                <Button Content="Выход из учетной записи" Command="{Binding Logout}"/>
+                <Button Content="Зайти под другим пользователем" Command="{Binding Logout}"/>
             </StackPanel>
         </Grid>
         <Frame x:Name="mainFrame"

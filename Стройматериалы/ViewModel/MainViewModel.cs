@@ -71,6 +71,7 @@ namespace Стройматериалы.ViewModel
             {
                 User = new User();
                 LoggedIn = Visibility.Collapsed;
+                CurrentPage = new AuthPage(this);
             });
         }
     }

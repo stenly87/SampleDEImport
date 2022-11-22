@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Стройматериалы.ViewModel;
 
 namespace Стройматериалы.View
 {
@@ -20,9 +21,10 @@ namespace Стройматериалы.View
     /// </summary>
     public partial class ProductListPage : Page
     {
-        public ProductListPage()
+        public ProductListPage(Models.User user, ViewModel.MainViewModel mainViewModel)
         {
             InitializeComponent();
+            DataContext = new ProductListViewModel(user, mainViewModel);
         }
     }
 }

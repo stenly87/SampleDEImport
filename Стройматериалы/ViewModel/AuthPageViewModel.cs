@@ -11,6 +11,7 @@ using System.Windows.Threading;
 using Стройматериалы.DB;
 using Стройматериалы.Models;
 using Стройматериалы.Tools;
+using Стройматериалы.View;
 
 namespace Стройматериалы.ViewModel
 {
@@ -79,7 +80,8 @@ namespace Стройматериалы.ViewModel
 
             EnterGuest = new ViewCommand(() =>
             {
-
+                mainViewModel.User = new User { UserRoleNavigation = new Role { RoleName = "Гость" } };
+                mainViewModel.CurrentPage = new ProductListPage(new User(), mainViewModel);
             });
         }
 
@@ -145,7 +147,7 @@ namespace Стройматериалы.ViewModel
         private void EnterUser(User user)
         {
             mainViewModel.User = user;
-            
+            mainViewModel.CurrentPage = new ProductListPage(user, mainViewModel);
         }
     }
 }
