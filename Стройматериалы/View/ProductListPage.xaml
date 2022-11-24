@@ -51,7 +51,7 @@
             <StackPanel Grid.Column="1" Visibility="{Binding IsAdminVisibility}" Orientation="Horizontal">
                 <Button Content="Добавить"/>
                 <Button Content="Редактировать"/>
-                <Button Content="Удалить"/>
+                <Button Content="Удалить" Command="{Binding RemoveProduct}"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
@@ -63,8 +63,10 @@
                 <Label Content="Поиск товара:"/>
                 <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" MinWidth="150"/>
                 <Label Content="Сортировка по стоимости"/>
-                <RadioButton Content="По возрастанию" IsChecked="{Binding SortPriceASC}"/>
-                <RadioButton Content="По убыванию" IsChecked="{Binding SortPriceDESC}"/>
+                <ComboBox SelectedItem="{Binding SortPrice}">
+                    <ComboBoxItem Content="По возрастанию"/>
+                    <ComboBoxItem Content="По убыванию"/>
+                </ComboBox>
                 <Label Content="Фильтрация по производителю"/>
                 <ComboBox ItemsSource="{Binding Manufacturers}"
                           DisplayMemberPath="Title"
