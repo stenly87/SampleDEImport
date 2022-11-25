@@ -43,13 +43,13 @@
                       DisplayMemberPath="Title"
                       SelectedItem="{Binding EditProduct.ProductUnit}"/>
             <Label Content="Стоимость за единицу"/>
-            <TextBox Text="{Binding EditProduct.ProductCost}"/>
+                <TextBox Text="{Binding Path=EditProduct.ProductCost, StringFormat=\{0:F2\}}"/>
             <Label Content="Максимальная скидка"/>
             <TextBox Text="{Binding EditProduct.ProductDiscountMax}"/>
         </StackPanel>
         </ScrollViewer>
         <StackPanel Grid.Column="1">
-            <Image Source="{Binding EditProduct.Image}" MaxWidth="200"/>
+            <Image Source="{Binding EditProduct.Image}" MaxHeight="200" MaxWidth="300"/>
             <StackPanel Orientation="Horizontal">
                 <Button Content="Указать" Command="{Binding SelectImage}"/>
                 <Button Content="Удалить" Command="{Binding RemoveImage}"/>

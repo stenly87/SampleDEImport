@@ -92,6 +92,25 @@ namespace Стройматериалы.ViewModel
             Save = new ViewCommand(() => {
                 try
                 {
+                    if (EditProduct.ProductPhoto != null)
+                    {
+                        if (EditProduct.Image.PixelHeight > 200 ||
+                            EditProduct.Image.PixelWidth > 300)
+                        {
+                            MessageBox.Show("Невозможно сохранить продукт. Изображение слишком большое.");
+                            return;
+                        }
+                    }
+                    if (EditProduct.ProductQuantityInStock < 0)
+                    {
+                        MessageBox.Show("Невозможно сохранить продукт. Кол-во не может быть меньше 0");
+                        return;
+                    }
+                    if (EditProduct.ProductCost < 0)
+                    {
+                        MessageBox.Show("Невозможно сохранить продукт. Стоимость не может быть меньше 0");
+                        return;
+                    }
                     DEContext.GetInstance().Entry<Product>(original).
                         CurrentValues.SetValues(EditProduct);
                     DEContext.GetInstance().SaveChanges();
