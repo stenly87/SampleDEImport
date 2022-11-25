@@ -10,6 +10,7 @@ using System.Windows.Media.Imaging;
 using Стройматериалы.DB;
 using Стройматериалы.Models;
 using Стройматериалы.Tools;
+using Стройматериалы.View;
 
 namespace Стройматериалы.ViewModel
 {
@@ -78,10 +79,12 @@ namespace Стройматериалы.ViewModel
         public Visibility IsAdminVisibility { get => user.UserRole == 1 ? Visibility.Visible : Visibility.Collapsed; }
 
         public ViewCommand RemoveProduct { get; set; }
+        public ViewCommand AddProduct { get; set; }
+        public ViewCommand EditProduct { get; set; }
 
-        public ProductListViewModel(User user, MainViewModel mainViewModel)
+        public ProductListViewModel(MainViewModel mainViewModel)
         {
-            this.user = user;
+            this.user = Auth.Auth.CurrentUser;
             this.mainViewModel = mainViewModel;
 
             Manufacturers = DEContext.GetInstance().ProductManufacturers.ToList();
@@ -110,6 +113,19 @@ namespace Стройматериалы.ViewModel
                 {
                     MessageBox.Show("Произошла ошибка при удалении товара");
                 }
+            });
+
+            AddProduct = new ViewCommand(() => {
+                mainViewModel.CurrentPage = new EditProductPage(new Product(), mainViewModel);
+            });
+
+            EditProduct = new ViewCommand(() => {
+                if (SelectedProduct == null)
+                {
+                    MessageBox.Show("Для редактирования продукта нужно его выбрать");
+                    return;
+                }
+                mainViewModel.CurrentPage = new EditProductPage(SelectedProduct, mainViewModel);
             });
         }
 

@@ -12,19 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Стройматериалы.Models;
 using Стройматериалы.ViewModel;
 
 namespace Стройматериалы.View
 {
     /// <summary>
-    /// Логика взаимодействия для ProductListPage.xaml
+    /// Логика взаимодействия для EditProductPage.xaml
     /// </summary>
-    public partial class ProductListPage : Page
+    public partial class EditProductPage : Page
     {
-        public ProductListPage(ViewModel.MainViewModel mainViewModel)
+        public EditProductPage(Product edit, MainViewModel mainViewModel)
         {
             InitializeComponent();
-            DataContext = new ProductListViewModel(mainViewModel);
+            DataContext = new EditProductViewModel(edit, mainViewModel);
         }
     }
 }

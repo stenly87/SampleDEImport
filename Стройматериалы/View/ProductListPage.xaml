@@ -49,8 +49,8 @@
             </Grid.ColumnDefinitions>
             <Label Content="{Binding RowsCount}"/>
             <StackPanel Grid.Column="1" Visibility="{Binding IsAdminVisibility}" Orientation="Horizontal">
-                <Button Content="Добавить"/>
-                <Button Content="Редактировать"/>
+                <Button Content="Добавить" Command="{Binding AddProduct}"/>
+                <Button Content="Редактировать" Command="{Binding EditProduct}"/>
                 <Button Content="Удалить" Command="{Binding RemoveProduct}"/>
             </StackPanel>
         </Grid>

@@ -81,7 +81,7 @@ namespace Стройматериалы.ViewModel
             EnterGuest = new ViewCommand(() =>
             {
                 mainViewModel.User = new User { UserRoleNavigation = new Role { RoleName = "Гость" } };
-                mainViewModel.CurrentPage = new ProductListPage(new User(), mainViewModel);
+                mainViewModel.CurrentPage = new ProductListPage(mainViewModel);
             });
         }
 
@@ -146,8 +146,9 @@ namespace Стройматериалы.ViewModel
 
         private void EnterUser(User user)
         {
+            Auth.Auth.CurrentUser = user;
             mainViewModel.User = user;
-            mainViewModel.CurrentPage = new ProductListPage(user, mainViewModel);
+            mainViewModel.CurrentPage = new ProductListPage(mainViewModel);
         }
     }
 }
